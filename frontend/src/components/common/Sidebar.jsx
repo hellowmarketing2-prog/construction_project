@@ -24,16 +24,19 @@ export const Sidebar = () => {
               <Link to="/admin/services">Services</Link>
             </li>
             <li>
-              <a href="/admin/projects">Projects</a>
+              <Link to="/admin/projects">Projects</Link>
             </li>
             <li>
-              <a href="/admin/articles">Articles</a>
+              <Link to="/admin/articles">Articles</Link>
+            </li>
+            <li>
+              <Link to="/admin/testimonials">Testimonials</Link>
             </li>
             <li>
               <button onClick={logout} className="btn btn-primary mt-4">
                 Logout
               </button>
-              {/* <button
+              {/* <buttond
                     onClick={handleLogout}
                     className="btn btn-danger mt-3 small"
                   >

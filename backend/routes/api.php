@@ -10,7 +10,9 @@ use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\front\ServiceController as FrontServiceController;
 use App\Http\Controllers\front\ProjectController as FrontProjectController;
 use App\Http\Controllers\front\ArticleController as FrontArticleController;
+use App\Http\Controllers\front\TestimonialController as FrontTestimonialController;
 use App\Http\Controllers\admin\TempImageController;
+use App\Http\Controllers\admin\TestimonialController;
 use App\Models\Article;
 use App\Models\Service;
 
@@ -30,6 +32,11 @@ Route::post('/authenticate', [AuthenticationController::class, 'authenticate']);
     // get projects 
     Route::get('/get_projects', [FrontProjectController::class, 'allProjects']);
     Route::get('/get_latest_projects', [FrontProjectController::class, 'latestProjects']);
+    // get testimonials 
+    Route::get('/get_testimonials', [FrontTestimonialController::class, 'index']);
+    Route::get('/get_latest_testimonials', [FrontTestimonialController::class, 'latestTestimonials']);
+
+    
 
 /*
 |-----------------------
@@ -72,5 +79,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    // testimonials routes 
+    Route::post('testimonials', [TestimonialController::class, 'store']);
+    Route::get('testimonials', [TestimonialController::class, 'index']);
+    Route::get('testimonials/{id}', [TestimonialController::class, 'show']);
+    Route::put('testimonials/{id}', [TestimonialController::class, 'update']);
+    Route::delete('testimonials/{id}', [TestimonialController::class, 'destroy']);
+
+
+    
+
+    
     
 });

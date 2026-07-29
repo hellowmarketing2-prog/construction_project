@@ -5,7 +5,7 @@ import Hero from "../common/Hero";
 import { default as AboutNew } from "../common/About";
 import Blogimg from "../../assets/images/construction2.jpg";
 import MemberImg from "../../assets/images/team1.jpg";
-
+import ShowTestimonials from "../common/ShowTestimonials";
 function About() {
   return (
     <>
@@ -125,6 +125,7 @@ function About() {
             </div>
           </div>
         </section>
+        <ShowTestimonials/>
       </main>
       <Footer />
     </>
