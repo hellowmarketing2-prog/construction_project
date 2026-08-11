@@ -33,6 +33,9 @@ export const Sidebar = () => {
               <Link to="/admin/testimonials">Testimonials</Link>
             </li>
             <li>
+              <Link to="/admin/members">Members</Link>
+            </li>
+            <li>
               <button onClick={logout} className="btn btn-primary mt-4">
                 Logout
               </button>

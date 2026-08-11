@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import constructionimg from "../../assets/images/construction2.jpg";
 import { apiUrl, fileUrl } from './http';
+import { Link } from 'react-router-dom';
 
 
 const LatestArticles = () => {
@@ -22,14 +23,14 @@ const LatestArticles = () => {
     {/* Our projects section */}
             <section className="section-3 bg-light py-5">
               <div className="container-fluid py-5">
-                <div className="section-header text-center ">
-                  <span>Our Projects</span>
-                  <h2>Check Out Our Recent Work</h2>
-                  <p>
-                    We take pride in our work and are committed to delivering
-                    exceptional results for our clients.
-                  </p>
-                </div>
+                 <div className="section-header text-center ">
+              <span>Blog & News</span>
+              <h2>Articles & blog posts</h2>
+              <p>
+                We offer a wide range of construction services to meet all your
+                needs.
+              </p>
+            </div>
                 <div className="row pt-4">
                  
                          { 
@@ -54,9 +55,9 @@ const LatestArticles = () => {
                             }
                           </p>
                         </div>
-                        <a href="#contact" className="btn btn-primary small mt-3">
+                        <Link to={`/article/${article.id}`} className="btn btn-primary small mt-3">
                           Read More
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import Hero from '../common/Hero';
 import constructionimg from "../../assets/images/construction3.jpg";
 import { apiUrl, fileUrl } from '../common/http';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Projects = () => {
    const [projects, setProjects] = useState([]);
       const fetchAllProjects = async () => {
@@ -60,9 +61,9 @@ const Projects = () => {
                                         {project.short_desc}
                                         </p>
                                       </div>
-                                      <a href="#contact" className="btn btn-primary small mt-3">
+                                      <Link to={`/project/${project.id}`} className="btn btn-primary small mt-3">
                                         Read More
-                                      </a>
+                                      </Link>
                                     </div>
                                   </div>
                                   

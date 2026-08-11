@@ -2,7 +2,37 @@ import React from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import Hero from "../common/Hero";
+import { useForm } from "react-hook-form";
+import { apiUrl } from "../common/http";
+import { toast } from "react-toastify";
 const ContactUs = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { isSubmitting },
+    formState: { errors },
+  } = useForm();
+
+  const onsubmit = async (data) => {
+    const res = await fetch(apiUrl + "contact_now", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (result.status == true) {
+      toast.success(result.message);
+      reset();
+    } else {
+      toast.error(result.message);
+    }
+  };
   return (
     <>
       <Header />
@@ -59,57 +89,172 @@ const ContactUs = () => {
               <div className="col-md-9">
                 <div className="card shadow border-0">
                   <div className="card-body p-5">
-                    <form action="">
+                    <form onSubmit={handleSubmit(onsubmit)}>
                       <div className="row">
                         <div className="col-md-6 mb-4">
                           <label htmlFor="" className="form-label">
                             Name
                           </label>
+
                           <input
                             type="text"
-                            className="form-control form-control-lg"
+                            id="name"
                             placeholder="Enter Name"
+                            className={`form-control ${errors.name ? "is-invalid" : ""}`}
+                            {...register("name", {
+                              required: "The name field is required",
+                            })}
                           />
+
+                          {errors.name && (
+                            <div className="invalid-feedback">
+                              {errors.name.message}
+                            </div>
+                          )}
                         </div>
                         <div className="col-md-6 mb-4">
-                          <label htmlFor="" className="form-label">
-                            Email
-                          </label>
+                          <label className="form-label">Email</label>
+
                           <input
-                            type="text"
-                            className="form-control form-control-lg"
-                            placeholder="Enter Email"
+                            type="email"
+                            placeholder="Email"
+                            className={`form-control ${
+                              errors.email ? "is-invalid" : ""
+                            }`}
+                            {...register("email", {
+                              required: "The email field is required",
+                              pattern: {
+                                value:
+                                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Please enter a valid email address",
+                              },
+                            })}
                           />
-                      </div>
+
+                          {errors.email && (
+                            <div className="invalid-feedback form-control-lg">
+                              {errors.email.message}
+                            </div>
+                          )}
+                        </div>
                         <div className="col-md-6 mb-4">
                           <label htmlFor="" className="form-label">
                             Phone
                           </label>
                           <input
                             type="text"
+                            {...register("phone")}
                             className="form-control form-control-lg"
                             placeholder="Phone No."
                           />
                         </div>
                         <div className="col-md-6 mb-4">
                           <label htmlFor="" className="form-label">
-                            Subject                          </label>
+                            Subject{" "}
+                          </label>
                           <input
                             type="text"
+                            {...register("subject")}
                             className="form-control form-control-lg"
                             placeholder="Subject"
                           />
-                      </div>
-                      <div>
-                         <label htmlFor="" className="form-label">
-                            Message                          </label>
-                            <textarea name="" rows={4} className="form-control form-control-lg"
-                            placeholder="Your message" id=""></textarea>
-                     
-                      </div>
-</div>
-                     <button className="btn btn-primary mt-5 large">Submit</button> 
+                        </div>
+                        <div>
+                          <label htmlFor="" className="form-label">
+                            Message{" "}
+                          </label>
 
+                          <textarea
+                            {...register("message")}
+                            rows={4}
+                            className="form-control form-control-lg"
+                            placeholder="Your message"
+                            id=""
+                          ></textarea>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className={`premium-send-btn ${isSubmitting ? "is-sending" : ""}`}
+                        disabled={isSubmitting}
+                      >
+                        <span className="btn-bg"></span>
+
+                        {!isSubmitting ? (
+                          <span className="btn-idle">
+                            <span>Send Message</span>
+                          </span>
+                        ) : (
+                          <span className="btn-sending">
+                            {/* Animated envelope */}
+                            <span className="mail-animation">
+                              <svg
+                                viewBox="0 0 64 64"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <rect
+                                  x="8"
+                                  y="16"
+                                  width="48"
+                                  height="34"
+                                  rx="6"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                />
+
+                                <path
+                                  className="mail-left"
+                                  d="M10 20L32 37L54 20"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+
+                                <path
+                                  className="mail-right"
+                                  d="M10 48L25 34"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                />
+
+                                <path
+                                  className="mail-right"
+                                  d="M54 48L39 34"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                />
+                              </svg>
+                            </span>
+
+                            {/* Status */}
+                            <span className="sending-status">
+                              <span className="status-main">
+                                Sending Email
+                                <span className="animated-dots">
+                                  <i></i>
+                                  <i></i>
+                                  <i></i>
+                                </span>
+                              </span>
+
+                              <span className="status-sub">Please wait...</span>
+                            </span>
+                          </span>
+                        )}
+
+                        {/* Progress animation */}
+                        {isSubmitting && (
+                          <span className="sending-progress"></span>
+                        )}
+                      </button>
                     </form>
                   </div>
                 </div>

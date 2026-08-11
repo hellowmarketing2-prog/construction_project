@@ -64,7 +64,7 @@ const Create = ({ placeholder }) => {
       .then((result) => {
         setIsDisable(false);
 
-        console.log(result);
+        // console.log(result);
 
         if (result.status === false) {
           toast.error(result.errors.image[0]);

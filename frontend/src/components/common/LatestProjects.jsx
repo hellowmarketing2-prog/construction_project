@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import constructionimg from "../../assets/images/construction2.jpg";
 import { apiUrl, fileUrl } from './http';
+import { Link } from 'react-router-dom';
 
 
 const LatestProjects = () => {
@@ -54,9 +55,9 @@ const LatestProjects = () => {
                             }
                           </p>
                         </div>
-                        <a href="#contact" className="btn btn-primary small mt-3">
+                        <Link to={`/project/${project.id}`} className="btn btn-primary small mt-3">
                           Read More
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

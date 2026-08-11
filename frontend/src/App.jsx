@@ -23,7 +23,7 @@ import { default as EditService } from "./components/backend/services/Edit";
 import { default as EditProject } from "./components/backend/projects/Edit";
 
 
-
+// importing articles 
 import { default as CreateArticles } from "./components/backend/articles/Create";
 import { default as EditArticles } from "./components/backend/articles/Edit";
 import { default as ShowArticles } from "./components/backend/articles/Show";
@@ -32,22 +32,36 @@ import { default as ShowArticles } from "./components/backend/articles/Show";
 
 
 
-
+// importing testimonials 
 import { default as ShowTestimonial} from "./components/backend/testimonials/Show";
 import { default as CreateTestimonial } from "./components/backend/testimonials/Create";
 import { default as EditTestimonial } from "./components/backend/testimonials/Edit";
 
+
+// importing team members 
+import { default as ShowMembers} from "./components/backend/members/Show";
+import {default as CreateMembers} from "./components/backend/members/Create";
+import {default as EditMembers} from "./components/backend/members/Edit";
+import ServiceDetails from "./components/frontend/ServiceDetails";
+import ProjectDetails from "./components/frontend/ProjectDetails";
+import ArticleDetails from "./components/frontend/ArticleDetails";
+import ScrollToTop from "./components/common/ScrollToTop";
 function App() {
   return (
     <>
       <BrowserRouter>
+          
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/article/:id" element={<ArticleDetails />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/service/:id" element={<ServiceDetails />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path="/admin/login" element={<Login />} />
 
           <Route
@@ -160,6 +174,34 @@ function App() {
             }
             
           />
+          <Route
+            path="/admin/members"
+            element={
+              <RequireAuth>
+                <ShowMembers />
+              </RequireAuth>
+            }
+            
+          />
+          <Route
+            path="/admin/members/create"
+            element={
+              <RequireAuth>
+                <CreateMembers />
+              </RequireAuth>
+            }
+            
+          />
+          <Route
+            path="/admin/members/edit/:id"
+            element={
+              <RequireAuth>
+                <EditMembers />
+              </RequireAuth>
+            }
+            
+          />
+     
           
         
         </Routes>

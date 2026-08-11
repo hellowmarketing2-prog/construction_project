@@ -4,6 +4,7 @@ import Footer from '../common/Footer'
 import Hero from '../common/Hero'
 import Serviceimg from "../../assets/images/construction1.jpg";
 import { apiUrl, fileUrl } from '../common/http';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
    const [services, setServices] = useState([]);
@@ -43,7 +44,7 @@ const Services = () => {
                               services &&
                                 services.map((service) => {
                                   return(
-                                  <div className="col-md-4 col-lg-4">
+                                  <div key={service.id} className="col-md-4 col-lg-4">
                                     <div className="item">
                                       <div className="service-image ">
                                         <img src={`${fileUrl}uploads/services/small/${service.image}`} className="w-100" />
@@ -58,11 +59,12 @@ const Services = () => {
                                             {service.short_desc}
                                           </p>
                                         </div>
-                                        <a href="#contact" className="btn btn-primary mt-3 small">
+                                        <Link to={`/service/${service.id}`} className="btn btn-primary mt-3 small">
                                           Read More
-                                        </a>
+                                        </Link>
                                       </div>
                                     </div>
+                                   
                                   </div>
                                   )
                                 })}

@@ -31,4 +31,23 @@ public function latestProjects(Request $request){
     
 }
 
+   // this method will return a single servie
+public function project($id){
+    $Project = project::find($id);
+
+    if ($Project == null){
+         return response()->json([
+            'status' => false,
+            'message' => "Project not found"
+
+
+        ]);
+    }
+     return response()->json([
+            'status' => true,
+            'data' => $Project
+
+
+        ]);
+}
 }

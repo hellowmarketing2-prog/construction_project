@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
+
 class ArticleController extends Controller
 {
      public function index(){
@@ -29,6 +30,25 @@ public function latestArticles(Request $request){
 
         ]);
     
+}
+// this method will return a single article 
+public function article($id){
+    $article = Article::find($id);
+
+    if ($article == null){
+         return response()->json([
+            'status' => false,
+            'message' => "article not found :"
+
+
+        ]);
+    }
+     return response()->json([
+            'status' => true,
+            'data' => $article
+
+
+        ]);
 }
     
 }

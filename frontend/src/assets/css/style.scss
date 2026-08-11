@@ -405,3 +405,362 @@ header {
 .dashboard h1{
     font-size:45px;
 }
+
+.section-10{
+    .sidebar{
+        border-radius: 40px;
+    }
+}
+.section-11{
+    .sidebar{
+        border-radius: 40px;
+        .image-div{
+width: "90px" ;
+        }
+       
+        .title{
+            font-size: 1.2em;
+        }
+    }
+}
+
+
+/* =========================================
+   PREMIUM SEND BUTTON
+========================================= */
+
+.premium-send-btn {
+    margin-top: 20px;
+  position: relative;
+  width: 220px;
+  height: 58px;
+
+  border: none;
+  border-radius: 14px;
+
+  color: #fff;
+  background: $primary-color;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Glow */
+
+.premium-send-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+
+  border-radius: 16px;
+
+  background: $secondary-color;
+
+  background-size: 300% 100%;
+
+  z-index: -1;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.premium-send-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(99, 102, 241, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.premium-send-btn:hover:not(:disabled)::before {
+  opacity: 1;
+
+  animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+
+/* =========================================
+   IDLE STATE
+========================================= */
+
+.btn-idle {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  z-index: 2;
+}
+
+.send-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.send-arrow svg {
+  width: 17px;
+  height: 17px;
+}
+
+.premium-send-btn:hover .send-arrow {
+  transform: translateX(4px);
+
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* =========================================
+   SENDING STATE
+========================================= */
+
+.premium-send-btn.is-sending {
+  width: 270px;
+
+  cursor: wait;
+
+  background: #111827;
+
+  box-shadow:
+    0 10px 35px rgba(99, 102, 241, 0.25);
+}
+
+.btn-sending {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  z-index: 3;
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.mail-animation {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: envelopeFloat 1.5s ease-in-out infinite;
+}
+
+.mail-animation svg {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes envelopeFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(-3deg);
+  }
+}
+
+
+/* Envelope flap */
+
+.mail-left {
+  transform-origin: center;
+  animation: envelopeOpen 1.8s ease-in-out infinite;
+}
+
+@keyframes envelopeOpen {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+
+/* =========================================
+   STATUS TEXT
+========================================= */
+
+.sending-status {
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+
+  line-height: 1.1;
+}
+
+.status-main {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-sub {
+  margin-top: 5px;
+
+  font-size: 10px;
+
+  opacity: 0.55;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+   ANIMATED DOTS
+========================================= */
+
+.animated-dots {
+  display: inline-flex;
+
+  margin-left: 3px;
+
+  gap: 2px;
+}
+
+.animated-dots i {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  animation: dotPulse 1.2s infinite;
+}
+
+.animated-dots i:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animated-dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animated-dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.sending-progress {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #6366f1,
+    #06b6d4,
+    #8b5cf6,
+    transparent
+  );
+
+  background-size: 200% 100%;
+
+  animation: progressMove 1.2s linear infinite;
+}
+
+@keyframes progressMove {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+/* =========================================
+   DISABLED
+========================================= */
+
+.premium-send-btn:disabled {
+  opacity: 1;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+  .premium-send-btn {
+    width: 100%;
+  }
+
+  .premium-send-btn.is-sending {
+    width: 100%;
+  }
+
+}

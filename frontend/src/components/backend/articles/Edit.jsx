@@ -47,8 +47,8 @@ setArticle(result.data);
         image: result.data.image,
         status: result.data.status,
       };
-    },
-  });
+    }
+  })
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     const newData = { ...data, content: content, imageId: imageId };
@@ -87,7 +87,7 @@ setArticle(result.data);
      .then((result) => {
           setIsDisable(false);
           
-            console.log(result);
+            // console.log(result);
           
             if (result.status === false) {
               toast.error(result.errors.image[0]);

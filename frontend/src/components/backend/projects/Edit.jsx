@@ -281,12 +281,13 @@ const Create = ({ placeholder }) => {
                             fileUrl + "uploads/projects/small/" + project.image
                           }
                           alt=""
+                          width={120}
                         />
                       )}
                     </div>
 
                     <button disabled={isDisable} className="btn btn-primary">
-                      Submit
+                      Update
                     </button>
                   </form>
                 </div>

@@ -4,6 +4,7 @@ import Hero from "../common/Hero";
 import constructionimg from "../../assets/images/construction3.jpg";
 import { apiUrl, fileUrl } from "../common/http";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Blogs = () => {
   const [articles, setArticles] = useState([]);
   const fetchAllArticles = async () => {
@@ -40,38 +41,34 @@ const Blogs = () => {
               </p>
             </div>
             <div className="row pt-3">
-              {
-                  articles &&
-                                articles.map((article) => {
-                                  return(
-
-
-              <div key={article.id} className="col-md-4">
-                <div className="card shadow border-0">
-                  <div className="card-img-top">
-<img
-                      src={`${fileUrl}uploads/articles/small/${article.image}`}
-                      className="w-100"
-                    />
-                    {/* <img src={Blogimg} alt="" className="w-100" /> */}
-                  </div>
-                  <div className="card-body p-3">
-                    <div className="mb-3">
-                      <a href="#" className="title">
-                      {article.title}
-                      </a>
+              {articles &&
+                articles.map((article) => {
+                  return (
+                    <div key={article.id} className="col-md-4">
+                      <div className="card shadow border-0">
+                        <div className="card-img-top">
+                          <img
+                            src={`${fileUrl}uploads/articles/small/${article.image}`}
+                            className="w-100"
+                          />
+                          {/* <img src={Blogimg} alt="" className="w-100" /> */}
+                        </div>
+                        <div className="card-body p-3">
+                          <div className="mb-3">
+                            <Link  to={`/article/${article.id}`} className="title">
+                              {article.title}
+                            </Link>
+                          </div>
+                          <div>
+                            <Link to={`/article/${article.id}`} className="btn btn-primary small">
+                              Read More
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <a href="" className="btn btn-primary small">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                  )
-                                })}
-             
+                  );
+                })}
             </div>
           </div>
         </section>
