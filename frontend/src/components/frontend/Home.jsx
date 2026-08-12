@@ -18,6 +18,7 @@ import LatestServices from "../common/LatestServices";
 import LatestProjects from "../common/LatestProjects";
 import LatestArticles from "../common/LatestArticles";
 import ShowTestimonials from "../common/ShowTestimonials";
+import { Link } from "react-router-dom";
 const Home = () => {
 
   return (
@@ -39,12 +40,12 @@ const Home = () => {
                   exceed our clients' expectations.
                 </p>
                 <div className="mt-4">
-                  <a href="#contact" className="btn btn-primary large">
+                  <Link to="/contact" className="btn btn-primary large">
                     Contact Now
-                  </a>
-                  <a href="#contact" className="btn btn-secondary large ms-2">
+                  </Link>
+                  <Link to="/projects" className="btn btn-secondary large ms-2">
                     View Projects
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

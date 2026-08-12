@@ -4,6 +4,8 @@ import Sidebar from '../../common/Sidebar';
 import Header from '../../common/Header';
 import { Link } from 'react-router-dom';
 import { apiUrl, token } from '../../common/http';
+import DeleteButton from '../../common/DeleteButton';
+import EditButton from '../../common/EditButton';
 
 const Show = () => {
         const [projects, setprojects] = useState([]);
@@ -93,16 +95,14 @@ const Show = () => {
                               <td>
                                 <Link
                                   to={`/admin/projects/edit/${project.id}`}
-                                  className="btn btn-primary sm"
                                 >
-                                  Edit
+                                  <EditButton/>
                                 </Link>
-                       <button
+                       <Link
   onClick={() => deleteproject(project.id)}
-  className="btn btn-secondary sm ms-2"
 >
-  Delete
-</button>
+  <DeleteButton/>
+</Link>
                               </td>
                             </tr>
                           );

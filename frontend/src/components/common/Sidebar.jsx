@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../frontend/context/Auth";
 import React, { useContext } from "react";
+import LogoutButton from "./LogoutButton";
 
 export const Sidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -36,9 +37,10 @@ export const Sidebar = () => {
               <Link to="/admin/members">Members</Link>
             </li>
             <li>
-              <button onClick={logout} className="btn btn-primary mt-4">
-                Logout
-              </button>
+<div className="logout-wrapper" onClick={logout}>
+  <LogoutButton />
+  <span className="mt-2">Logout</span>
+</div>
               {/* <buttond
                     onClick={handleLogout}
                     className="btn btn-danger mt-3 small"

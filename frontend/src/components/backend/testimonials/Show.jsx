@@ -5,6 +5,8 @@ import Sidebar from "../../common/Sidebar";
 import Footer from "../../common/Footer";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import DeleteButton from "../../common/DeleteButton";
+import EditButton from "../../common/EditButton";
 
 
 const Show = () => {
@@ -98,16 +100,14 @@ const deleteTestimonial = async (id) => {
                               <td>
                                 <Link
                                   to={`/admin/testimonials/edit/${testimonial.id}`}
-                                  className="btn btn-primary sm"
                                 >
-                                  Edit
+                                  <EditButton/>
                                 </Link>
-                       <button
+                       <Link
   onClick={() => deleteTestimonial(testimonial.id)}
-  className="btn btn-secondary sm ms-2"
 >
-  Delete
-</button>
+  <DeleteButton/>
+</Link>
                               </td>
                             </tr>
                           );

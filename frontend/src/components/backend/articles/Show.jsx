@@ -1,56 +1,56 @@
-import Footer from '../../common/Footer';
-import { Link } from 'react-router-dom';
-import Sidebar from '../../common/Sidebar';
-import Header from '../../common/Header';
+import Footer from "../../common/Footer";
+import { Link } from "react-router-dom";
+import Sidebar from "../../common/Sidebar";
+import Header from "../../common/Header";
 import { apiUrl, token } from "../../common/http";
 import { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
-
+import { toast } from "react-toastify";
+import EditButton from "../../common/EditButton";
+import DeleteButton from "../../common/DeleteButton";
 
 const Show = () => {
-    const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
 
-    const fetchArticles = async () => {
-        const res = await fetch(apiUrl+ "articles", {
-            method: "GET",
+  const fetchArticles = async () => {
+    const res = await fetch(apiUrl + "articles", {
+      method: "GET",
 
-            headers: {
-                "Content-type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${token()}`
-            },
-        });
-        const result = await res.json();
-        // console.log(result);
-        setArticles(result.data);
-    };
-    const deleteArticle = async (id) => {
-      if (confirm("Are you sure to delete this article?")) {
-        const res = await fetch(apiUrl + "articles/" + id, {
-          method: "DELETE",
-          headers: {
-            "Content-type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${token()}`,
-          },
-        });
-    
-        const result = await res.json();
-    
-        if (result.status == true) {
-          const newArticles = articles.filter(article => article.id != id); // refresh list
-          setArticles(newArticles);
-          toast.success(result.message);
-    
-        } else {
-          alert("Delete failed");
-        }
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token()}`,
+      },
+    });
+    const result = await res.json();
+    // console.log(result);
+    setArticles(result.data);
+  };
+  const deleteArticle = async (id) => {
+    if (confirm("Are you sure to delete this article?")) {
+      const res = await fetch(apiUrl + "articles/" + id, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token()}`,
+        },
+      });
+
+      const result = await res.json();
+
+      if (result.status == true) {
+        const newArticles = articles.filter((article) => article.id != id); // refresh list
+        setArticles(newArticles);
+        toast.success(result.message);
+      } else {
+        alert("Delete failed");
       }
-    };
+    }
+  };
 
-    useEffect(() => {
-        fetchArticles();
-    }, []);
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   return (
     <>
@@ -97,18 +97,14 @@ const Show = () => {
                                 {article.status == 1 ? "Active" : "Block"}
                               </td>
                               <td>
-                                <Link
-                                  to={`/admin/articles/edit/${article.id}`}
-                                  className="btn btn-primary sm"
-                                >
-                                  Edit
+                                <Link to={`/admin/articles/edit/${article.id}`}>
+                                  <EditButton />
                                 </Link>
-                       <button
-  onClick={() => deleteArticle(article.id)}
-  className="btn btn-secondary sm ms-2"
->
-  Delete
-</button>
+                                <Link
+                                  onClick={() => deleteArticle(article.id)}
+                                >
+                                  <DeleteButton />
+                                </Link>
                               </td>
                             </tr>
                           );
@@ -124,7 +120,7 @@ const Show = () => {
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Show
+export default Show;

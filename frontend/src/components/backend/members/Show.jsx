@@ -5,6 +5,8 @@ import Header from '../../common/Header';
 import { Link } from 'react-router-dom';
 import { apiUrl, token } from '../../common/http';
 import { toast } from 'react-toastify';
+import DeleteButton from '../../common/DeleteButton';
+import EditButton from '../../common/EditButton';
 
 const Show = () => {
    const [members, setMembers] = useState([]);
@@ -93,16 +95,14 @@ const deleteMember = async (id) => {
                               <td>
                                 <Link
                                   to={`/admin/members/edit/${member.id}`}
-                                  className="btn btn-primary sm"
                                 >
-                                  Edit
+                                  <EditButton/>
                                 </Link>
-                       <button
+                       <Link
   onClick={() => deleteMember(member.id)}
-  className="btn btn-secondary sm ms-2"
 >
-  Delete
-</button>
+  <DeleteButton/>
+</Link>
                               </td>
                             </tr>
                           );

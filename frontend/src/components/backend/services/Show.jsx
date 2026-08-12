@@ -5,6 +5,8 @@ import Sidebar from "../../common/Sidebar";
 import Footer from "../../common/Footer";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import EditButton from "../../common/EditButton";
+import DeleteButton from "../../common/DeleteButton";
 
 
 const Show = () => {
@@ -96,16 +98,14 @@ const deleteService = async (id) => {
                               <td>
                                 <Link
                                   to={`/admin/services/edit/${service.id}`}
-                                  className="btn btn-primary sm"
                                 >
-                                  Edit
+                                  <EditButton/>
                                 </Link>
-                       <button
+                       <Link
   onClick={() => deleteService(service.id)}
-  className="btn btn-secondary sm ms-2"
 >
-  Delete
-</button>
+  <DeleteButton/>
+</Link>
                               </td>
                             </tr>
                           );
