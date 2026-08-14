@@ -39,7 +39,7 @@ const Home = () => {
                   delivering exceptional <br /> construction services that
                   exceed our clients' expectations.
                 </p>
-                <div className="mt-4">
+                <div className="mt-4 home">
                   <Link to="/contact" className="btn btn-primary large">
                     Contact Now
                   </Link>

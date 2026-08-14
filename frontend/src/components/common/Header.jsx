@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import favicon from "../../../public/favicon.png";
 const Header = () => {
   return (
        <header>
@@ -9,6 +10,7 @@ const Header = () => {
             <Navbar.Brand href="/" className="logo">
               {" "}
               <span>UrbanEdge</span> Constructions
+<img src={favicon} height={71} width={100} className='navbar-logo' alt="" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />{" "}
             <Navbar.Collapse id="basic-navbar-nav">

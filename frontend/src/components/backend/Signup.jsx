@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../frontend/context/Auth";
 
-const Login = () => {
+const Signup = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/authenticate", {
+      const res = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,14 @@ const Login = () => {
       const result = await res.json();
 
       if (!res.ok || !result.status) {
-        toast.error(result.message || "Invalid email or password");
+        if (result.errors) {
+          Object.values(result.errors).forEach((error) => {
+            toast.error(error[0]);
+          });
+        } else {
+          toast.error(result.message || "Registration failed");
+        }
+
         return;
       }
 
@@ -48,7 +55,7 @@ const Login = () => {
 
       login(userInfo);
 
-      toast.success(result.message || "Login successful");
+      toast.success(result.message || "Registration successful");
 
       navigate("/admin/dashboard");
     } catch (error) {
@@ -63,27 +70,23 @@ const Login = () => {
     <>
       <Header />
 
-      <main className="login-page">
-
-        {/* Background Effects */}
-        <div className="login-background">
-          <div className="login-glow login-glow-one"></div>
-          <div className="login-glow login-glow-two"></div>
+      <main className="signup-page">
+        <div className="signup-background">
+          <div className="signup-glow signup-glow-one"></div>
+          <div className="signup-glow signup-glow-two"></div>
         </div>
 
         <div className="container">
-
           <div className="row justify-content-center align-items-center min-vh-100 py-5">
 
             <div className="col-lg-5 col-md-7 col-sm-10">
 
-              <div className="login-card">
+              <div className="signup-card">
 
                 {/* Header */}
-                <div className="login-header text-center">
+                <div className="signup-header text-center">
 
-                  <div className="login-icon">
-
+                  <div className="signup-icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"
@@ -95,23 +98,17 @@ const Login = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <rect
-                        x="3"
-                        y="11"
-                        width="18"
-                        height="10"
-                        rx="2"
-                      />
-
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <line x1="19" y1="8" x2="19" y2="14"></line>
+                      <line x1="22" y1="11" x2="16" y2="11"></line>
                     </svg>
-
                   </div>
 
-                  <h2>Welcome Back</h2>
+                  <h2>Create Account</h2>
 
                   <p>
-                    Login to your account and access the admin dashboard
+                    Create your account to access the admin dashboard
                   </p>
 
                 </div>
@@ -119,17 +116,62 @@ const Login = () => {
                 {/* Form */}
                 <form onSubmit={handleSubmit(onSubmit)}>
 
+                  {/* Name */}
+                  <div className="signup-field">
+
+                    <label htmlFor="name">
+                      Full Name
+                    </label>
+
+                    <div className="input-wrapper">
+
+                      <span className="input-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </span>
+
+                      <input
+                        id="name"
+                        type="text"
+                        placeholder="Enter your full name"
+                        className={errors.name ? "input-error" : ""}
+                        {...register("name", {
+                          required: "Name is required",
+                        })}
+                      />
+
+                    </div>
+
+                    {errors.name && (
+                      <small className="signup-error">
+                        {errors.name.message}
+                      </small>
+                    )}
+
+                  </div>
+
                   {/* Email */}
-                  <div className="login-field">
+                  <div className="signup-field">
 
                     <label htmlFor="email">
                       Email Address
                     </label>
 
-                    <div className="login-input-wrapper">
+                    <div className="input-wrapper">
 
-                      <span className="login-input-icon">
-
+                      <span className="input-icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="18"
@@ -147,27 +189,22 @@ const Login = () => {
                             width="18"
                             height="14"
                             rx="2"
-                          />
-
-                          <polyline points="3 7 12 13 21 7" />
+                          ></rect>
+                          <polyline points="3 7 12 13 21 7"></polyline>
                         </svg>
-
                       </span>
 
                       <input
                         id="email"
                         type="email"
                         placeholder="Enter your email"
-                        className={errors.email ? "login-input-error" : ""}
+                        className={errors.email ? "input-error" : ""}
                         {...register("email", {
                           required: "Email is required",
-
                           pattern: {
                             value:
                               /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-
-                            message:
-                              "Please enter a valid email address",
+                            message: "Please enter a valid email address",
                           },
                         })}
                       />
@@ -175,7 +212,7 @@ const Login = () => {
                     </div>
 
                     {errors.email && (
-                      <small className="login-error">
+                      <small className="signup-error">
                         {errors.email.message}
                       </small>
                     )}
@@ -183,22 +220,15 @@ const Login = () => {
                   </div>
 
                   {/* Password */}
-                  <div className="login-field">
+                  <div className="signup-field">
 
-                    <div className="password-label-row">
+                    <label htmlFor="password">
+                      Password
+                    </label>
 
-                      <label htmlFor="password">
-                        Password
-                      </label>
+                    <div className="input-wrapper">
 
-                    
-
-                    </div>
-
-                    <div className="login-input-wrapper">
-
-                      <span className="login-input-icon">
-
+                      <span className="input-icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="18"
@@ -216,28 +246,29 @@ const Login = () => {
                             width="18"
                             height="10"
                             rx="2"
-                          />
-
-                          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                          ></rect>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
-
                       </span>
 
                       <input
                         id="password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter your password"
-                        className={
-                          errors.password ? "login-input-error" : ""
-                        }
+                        placeholder="Create a password"
+                        className={errors.password ? "input-error" : ""}
                         {...register("password", {
                           required: "Password is required",
+                          minLength: {
+                            value: 6,
+                            message:
+                              "Password must be at least 6 characters",
+                          },
                         })}
                       />
 
                       <button
                         type="button"
-                        className="login-password-toggle"
+                        className="password-toggle"
                         onClick={() =>
                           setShowPassword(!showPassword)
                         }
@@ -248,61 +279,53 @@ const Login = () => {
                     </div>
 
                     {errors.password && (
-                      <small className="login-error">
+                      <small className="signup-error">
                         {errors.password.message}
                       </small>
                     )}
 
                   </div>
 
-                  {/* Login Button */}
+                  {/* Submit */}
                   <button
                     type="submit"
-                    className="login-submit"
+                    className="signup-submit"
                     disabled={isLoading}
                   >
-
                     {isLoading ? (
                       <>
-                        <span className="login-spinner"></span>
-                        Signing In...
+                        <span className="signup-spinner"></span>
+                        Creating Account...
                       </>
                     ) : (
                       <>
-                        Login to Dashboard
-                        
+                        Create Account
+                        {/* <span className="submit-arrow">→</span> */}
                       </>
                     )}
-
                   </button>
 
-                  {/* Signup */}
-                  <div className="signup-link">
+                  {/* Login */}
+                  <div className="login-link">
+                    <span>Already have an account?</span>
 
-                    <span>
-                      Don't have an account?
-                    </span>
-
-                    <Link to="/admin/signup">
-                      Create Account
+                    <Link to="/admin/login">
+                      Login here
                     </Link>
-
                   </div>
 
                 </form>
 
               </div>
 
-              <p className="login-footer-text">
+              <p className="signup-footer-text">
                 © {new Date().getFullYear()} Construction. All rights reserved.
               </p>
 
             </div>
 
           </div>
-
         </div>
-
       </main>
 
       <Footer />
@@ -310,4 +333,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

@@ -9,6 +9,7 @@ import Projects from "./components/frontend/Projects";
 import Blogs from "./components/frontend/Blogs";
 import ContactUs from "./components/frontend/ContactUs";
 import Login from "./components/backend/Login";
+import Signup from "./components/backend/Signup";
 import {default as CreateService} from "./components/backend/services/Create";
 import {default as CreateProjects} from "./components/backend/projects/Create";
 import "./assets/css/style.scss";
@@ -63,6 +64,7 @@ function App() {
           <Route path="/service/:id" element={<ServiceDetails />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/signup" element={<Signup />} />
 
           <Route
             path="/admin/dashboard"

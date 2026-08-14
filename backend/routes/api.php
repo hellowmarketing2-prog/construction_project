@@ -25,6 +25,7 @@ use App\Models\Service;
 |-----------------------
 */
 
+Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/authenticate', [AuthenticationController::class, 'authenticate']);
 // get services
 Route::get('/get_services', [FrontServiceController::class, 'index']);
