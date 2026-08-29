@@ -2,7 +2,7 @@ import React from "react";
 
 const EditButton = () => {
   return (
-    <button className="edit-btn" title="Edit Project" type="button">
+    <button className="edit-btn" title="Edit" aria-label="Edit" type="button">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="19"

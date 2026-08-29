@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../common/Header";
@@ -6,29 +5,126 @@ import Sidebar from "../common/Sidebar";
 import Footer from "../common/Footer";
 
 const Dashboard = () => {
+  const stats = [
+    {
+      label: "Total Projects",
+      value: "12",
+      change: "+12%",
+      icon: "bi-buildings",
+      link: "/admin/projects",
+      linkText: "View projects",
+      tone: "projects",
+    },
+    {
+      label: "Services",
+      value: "8",
+      change: "Active",
+      icon: "bi-tools",
+      link: "/admin/services",
+      linkText: "Manage services",
+      tone: "services",
+    },
+    {
+      label: "Enquiries",
+      value: "35",
+      change: "5 new",
+      icon: "bi-inbox",
+      link: "/admin/contacts",
+      linkText: "Review requests",
+      tone: "contacts",
+    },
+    {
+      label: "Team Members",
+      value: "5",
+      change: "Online",
+      icon: "bi-people",
+      link: "/admin/members",
+      linkText: "Manage team",
+      tone: "team",
+    },
+  ];
+
+  const quickActions = [
+    {
+      title: "Add Project",
+      description: "Launch a new construction project",
+      to: "/admin/projects/create",
+      icon: "bi-building-add",
+    },
+    {
+      title: "Add Service",
+      description: "Create a premium service listing",
+      to: "/admin/services/create",
+      icon: "bi-tools",
+    },
+    {
+      title: "Post Article",
+      description: "Publish new blog content",
+      to: "/admin/articles/create",
+      icon: "bi-pencil-square",
+    },
+    {
+      title: "Add Member",
+      description: "Update your team profile list",
+      to: "/admin/members/create",
+      icon: "bi-person-plus",
+    },
+    {
+      title: "Check Messages",
+      description: "Review customer enquiries",
+      to: "/admin/contacts",
+      icon: "bi-envelope-open",
+    },
+    {
+      title: "Website Settings",
+      description: "Update branding and website details",
+      to: "/admin/settings",
+      icon: "bi-sliders",
+    },
+  ];
+
+  const enquiries = [
+    {
+      initials: "JS",
+      name: "John Smith",
+      details: "Residential construction project",
+      time: "2h ago",
+    },
+    {
+      initials: "AM",
+      name: "Ahmed Malik",
+      details: "Commercial building inquiry",
+      time: "5h ago",
+    },
+    {
+      initials: "SK",
+      name: "Sarah Khan",
+      details: "House renovation project",
+      time: "1d ago",
+    },
+    {
+      initials: "MA",
+      name: "Muhammad Ali",
+      details: "Office construction",
+      time: "2d ago",
+    },
+  ];
+
   return (
     <>
       <Header />
 
       <main className="admin-dashboard">
-        <div className="container-fluid px-4 px-lg-5 py-4">
+        <div className="container-fluid dashboard-shell px-4 px-lg-5 py-4">
+          <div className="dashboard-header dashboard-hero mb-4">
+            <div className="dashboard-header-copy">
+              <span className="dashboard-subtitle">Admin Console</span>
 
-          {/* =========================
-              DASHBOARD HEADER
-          ========================== */}
-          <div className="dashboard-header mb-4">
-            <div>
-              <span className="dashboard-subtitle">
-                ADMIN CONSOLE
-              </span>
+              <h1 className="fw-bold mt-1 mb-2">Welcome back, Admin 👋</h1>
 
-              <h1 className="fw-bold mt-1 mb-2">
-                Welcome back, Admin 👋
-              </h1>
-
-              <p className="text-muted mb-0">
-                Manage your construction website, projects and enquiries
-                from one place.
+              <p className="mb-0">
+                Manage projects, services, enquiries and website updates from
+                one simple workspace.
               </p>
             </div>
 
@@ -38,525 +134,182 @@ const Dashboard = () => {
                 target="_blank"
                 className="btn btn-outline-dark me-2"
               >
-                🌐 View Website
+                <i className="bi bi-box-arrow-up-right me-2"></i>View Website
               </Link>
 
-              <Link
-                to="/admin/projects/create"
-                className="btn btn-primary"
-              >
-                + Add Project
+              <Link to="/admin/projects/create" className="btn btn-primary">
+                <i className="bi bi-plus-lg me-2"></i>Add Project
               </Link>
             </div>
           </div>
 
-
-          <div className="row">
-
-            {/* =========================
-                SIDEBAR
-            ========================== */}
-            <div className="col-lg-3 mb-4">
+          <div className="row g-4 align-items-start">
+            <div className="col-lg-3">
               <Sidebar />
             </div>
 
-
-            {/* =========================
-                MAIN DASHBOARD
-            ========================== */}
             <div className="col-lg-9">
-
-              {/* =========================
-                  STATISTICS
-              ========================== */}
-              <div className="row g-4 mb-4">
-
-                {/* Projects */}
-                <div className="col-md-6 col-xl-3">
-                  <div className="dashboard-stat-card">
-                    <div className="stat-top">
-                      <div className="stat-icon projects">
-                        🏗️
-                      </div>
-
-                      <span className="stat-badge">
-                        +12%
-                      </span>
-                    </div>
-
-                    <h2>12</h2>
-
-                    <p>
-                      Total Projects
-                    </p>
-
-                    <Link to="/admin/projects">
-                      View Projects →
-                    </Link>
+              <div className="dashboard-spotlight mb-4">
+                <div className="dashboard-spotlight-header">
+                  <div>
+                    <span>Today at a glance</span>
+                    <h3>Operational overview</h3>
                   </div>
+                  <div className="dashboard-spotlight-pill">Healthy</div>
                 </div>
 
+                <div className="dashboard-spotlight-grid">
+                  <div className="dashboard-spotlight-card">
+                    <strong>08</strong>
+                    <span>Pending tasks</span>
+                  </div>
 
-                {/* Services */}
-                <div className="col-md-6 col-xl-3">
-                  <div className="dashboard-stat-card">
-                    <div className="stat-top">
-                      <div className="stat-icon services">
-                        🛠️
-                      </div>
+                  <div className="dashboard-spotlight-card">
+                    <strong>05</strong>
+                    <span>New enquiries</span>
+                  </div>
 
-                      <span className="stat-badge">
-                        Active
-                      </span>
-                    </div>
-
-                    <h2>8</h2>
-
-                    <p>
-                      Services
-                    </p>
-
-                    <Link to="/admin/services">
-                      Manage Services →
-                    </Link>
+                  <div className="dashboard-spotlight-card">
+                    <strong>92%</strong>
+                    <span>Website health</span>
                   </div>
                 </div>
-
-
-                {/* Contacts */}
-                <div className="col-md-6 col-xl-3">
-                  <div className="dashboard-stat-card">
-                    <div className="stat-top">
-                      <div className="stat-icon contacts">
-                        📩
-                      </div>
-
-                      <span className="stat-badge">
-                        5 New
-                      </span>
-                    </div>
-
-                    <h2>35</h2>
-
-                    <p>
-                      Contact Enquiries
-                    </p>
-
-                    <Link to="/admin/contacts">
-                      View Enquiries →
-                    </Link>
-                  </div>
-                </div>
-
-
-                {/* Team */}
-                <div className="col-md-6 col-xl-3">
-                  <div className="dashboard-stat-card">
-                    <div className="stat-top">
-                      <div className="stat-icon team">
-                        👥
-                      </div>
-
-                      <span className="stat-badge">
-                        Active
-                      </span>
-                    </div>
-
-                    <h2>5</h2>
-
-                    <p>
-                      Team Members
-                    </p>
-
-                    <Link to="/admin/team">
-                      Manage Team →
-                    </Link>
-                  </div>
-                </div>
-
               </div>
 
+              <div className="row g-4 mb-4">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="col-md-6 col-xl-3">
+                    <div className="dashboard-stat-card">
+                      <div className="stat-top">
+                        <div className={`stat-icon ${stat.tone}`}>
+                          <i className={`bi ${stat.icon}`}></i>
+                        </div>
 
-              {/* =========================
-                  QUICK ACTIONS
-              ========================== */}
+                        <span className="stat-badge">{stat.change}</span>
+                      </div>
+
+                      <h2>{stat.value}</h2>
+
+                      <p>{stat.label}</p>
+
+                      <Link to={stat.link}>{stat.linkText} →</Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               <div className="dashboard-panel mb-4">
-
                 <div className="panel-header">
                   <div>
-                    <h4>
-                      Quick Actions
-                    </h4>
-
-                    <p>
-                      Frequently used administration tools
-                    </p>
+                    <h4>Quick actions</h4>
+                    <p>Common tasks to keep your site active and growing</p>
                   </div>
                 </div>
 
-
                 <div className="row g-3">
+                  {quickActions.map((action) => (
+                    <div key={action.title} className="col-md-6 col-xl-4">
+                      <Link to={action.to} className="quick-action">
+                        <div className="quick-icon">
+                          <i className={`bi ${action.icon}`}></i>
+                        </div>
 
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/projects/create"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        🏗️
-                      </div>
+                        <div className="quick-action-copy">
+                          <h6>{action.title}</h6>
+                          <span>{action.description}</span>
+                        </div>
 
-                      <div>
-                        <h6>
-                          Add New Project
-                        </h6>
-
-                        <span>
-                          Create a construction project
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
-
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/services/create"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        🛠️
-                      </div>
-
-                      <div>
-                        <h6>
-                          Add New Service
-                        </h6>
-
-                        <span>
-                          Create a new service
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
-
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/blogs/create"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        📝
-                      </div>
-
-                      <div>
-                        <h6>
-                          Write New Blog
-                        </h6>
-
-                        <span>
-                          Publish new content
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
-
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/team/create"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        👤
-                      </div>
-
-                      <div>
-                        <h6>
-                          Add Team Member
-                        </h6>
-
-                        <span>
-                          Add someone to your team
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
-
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/contacts"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        📬
-                      </div>
-
-                      <div>
-                        <h6>
-                          View Messages
-                        </h6>
-
-                        <span>
-                          Check customer enquiries
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
-
-                  <div className="col-md-6 col-xl-4">
-                    <Link
-                      to="/admin/settings"
-                      className="quick-action"
-                    >
-                      <div className="quick-icon">
-                        ⚙️
-                      </div>
-
-                      <div>
-                        <h6>
-                          Website Settings
-                        </h6>
-
-                        <span>
-                          Manage website settings
-                        </span>
-                      </div>
-
-                      <strong>→</strong>
-                    </Link>
-                  </div>
-
+                        <strong>→</strong>
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-
-              {/* =========================
-                  BOTTOM SECTION
-              ========================== */}
               <div className="row g-4">
-
-                {/* Recent Enquiries */}
                 <div className="col-lg-7">
-
                   <div className="dashboard-panel h-100">
-
                     <div className="panel-header">
                       <div>
-                        <h4>
-                          Recent Enquiries
-                        </h4>
-
-                        <p>
-                          Latest customer messages
-                        </p>
+                        <h4>Recent enquiries</h4>
+                        <p>Latest customer messages and requests</p>
                       </div>
 
-                      <Link to="/admin/contacts">
-                        View All
-                      </Link>
+                      <Link to="/admin/contacts">View all</Link>
                     </div>
-
 
                     <div className="enquiry-list">
+                      {enquiries.map((item) => (
+                        <div key={item.name} className="enquiry-item">
+                          <div className="enquiry-avatar">{item.initials}</div>
 
-                      <div className="enquiry-item">
-                        <div className="enquiry-avatar">
-                          JS
+                          <div className="enquiry-info">
+                            <h6>{item.name}</h6>
+                            <p>{item.details}</p>
+                          </div>
+
+                          <span className="enquiry-time">{item.time}</span>
                         </div>
-
-                        <div className="enquiry-info">
-                          <h6>
-                            John Smith
-                          </h6>
-
-                          <p>
-                            Residential Construction Project
-                          </p>
-                        </div>
-
-                        <span className="enquiry-time">
-                          2h ago
-                        </span>
-                      </div>
-
-
-                      <div className="enquiry-item">
-                        <div className="enquiry-avatar">
-                          AM
-                        </div>
-
-                        <div className="enquiry-info">
-                          <h6>
-                            Ahmed Malik
-                          </h6>
-
-                          <p>
-                            Commercial Building Inquiry
-                          </p>
-                        </div>
-
-                        <span className="enquiry-time">
-                          5h ago
-                        </span>
-                      </div>
-
-
-                      <div className="enquiry-item">
-                        <div className="enquiry-avatar">
-                          SK
-                        </div>
-
-                        <div className="enquiry-info">
-                          <h6>
-                            Sarah Khan
-                          </h6>
-
-                          <p>
-                            House Renovation Project
-                          </p>
-                        </div>
-
-                        <span className="enquiry-time">
-                          1d ago
-                        </span>
-                      </div>
-
-
-                      <div className="enquiry-item">
-                        <div className="enquiry-avatar">
-                          MA
-                        </div>
-
-                        <div className="enquiry-info">
-                          <h6>
-                            Muhammad Ali
-                          </h6>
-
-                          <p>
-                            Office Construction
-                          </p>
-                        </div>
-
-                        <span className="enquiry-time">
-                          2d ago
-                        </span>
-                      </div>
-
+                      ))}
                     </div>
-
                   </div>
-
                 </div>
 
-
-                {/* Website Overview */}
                 <div className="col-lg-5">
-
                   <div className="dashboard-panel h-100">
-
                     <div className="panel-header">
                       <div>
-                        <h4>
-                          Website Overview
-                        </h4>
-
-                        <p>
-                          Current website status
-                        </p>
+                        <h4>Website overview</h4>
+                        <p>Current status of your digital presence</p>
                       </div>
                     </div>
-
 
                     <div className="website-status">
-
                       <div className="status-row">
-                        <span>
-                          Website
-                        </span>
-
-                        <strong className="online">
-                          ● Online
-                        </strong>
+                        <span>Website</span>
+                        <strong className="online">● Online</strong>
                       </div>
 
-
                       <div className="status-row">
-                        <span>
-                          Projects
-                        </span>
-
-                        <strong>
-                          12 Published
-                        </strong>
+                        <span>Projects</span>
+                        <strong>12 published</strong>
                       </div>
 
-
                       <div className="status-row">
-                        <span>
-                          Services
-                        </span>
-
-                        <strong>
-                          8 Published
-                        </strong>
+                        <span>Services</span>
+                        <strong>8 published</strong>
                       </div>
 
-
                       <div className="status-row">
-                        <span>
-                          Blog Posts
-                        </span>
-
-                        <strong>
-                          18 Published
-                        </strong>
+                        <span>Blog posts</span>
+                        <strong>18 published</strong>
                       </div>
 
-
                       <div className="status-row">
-                        <span>
-                          Team Members
-                        </span>
-
-                        <strong>
-                          5 Active
-                        </strong>
+                        <span>Team members</span>
+                        <strong>5 active</strong>
                       </div>
-
                     </div>
 
+                    <div className="status-meter-wrap">
+                      <div className="status-meter">
+                        <span style={{ width: "92%" }}></span>
+                      </div>
+                      <small>Performance score: 92%</small>
+                    </div>
 
                     <Link
                       to="/"
                       target="_blank"
                       className="btn btn-dark w-100 mt-4"
                     >
-                      Visit Live Website →
+                      Visit live website →
                     </Link>
-
                   </div>
-
                 </div>
-
               </div>
-
             </div>
           </div>
-
         </div>
       </main>
 
@@ -566,4 +319,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

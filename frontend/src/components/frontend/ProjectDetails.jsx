@@ -4,12 +4,15 @@ import ShowTestimonial from "../common/ShowTestimonials";
 import Header from "../common/Header";
 import Hero from "../common/Hero";
 import { apiUrl, fileUrl } from "../common/http";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import useAnimationReveal from "../../hooks/useAnimation";
 
 const projectDetails = () => {
   const params = useParams();
   const [project, setproject] = useState([]);
   const [projects, setprojects] = useState([]);
+  useAnimationReveal();
+
   const fetchprojects = async () => {
     const res = await fetch(`${apiUrl}get_projects`, {
       method: "GET",
@@ -33,55 +36,57 @@ const projectDetails = () => {
       <Header />
       <main>
         <Hero
-          preHeading="Quality . Itigrity . Value"
+          preHeading="Quality . Integrity . Value"
           heading={`${project.title}`}
           text=" "
         />
-        <section className="section-10 sidebar">
+        <section className="section-10 sidebar project-details-section">
           <div className="container py-5">
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-4" data-reveal="fade-right">
                 <div className="card shadow border-0 sidebar">
                   <div className="card-body px-4 py-4">
-                    <h3 className="mt-2 mb-3">Insights</h3>
+                    <h3 className="mt-2 mb-3">Project Insights</h3>
                     <ul>
-                      {/* {projects &&
-                        projects.map((project) => {
-                          return ( */}
                       {project.location && (
-                        <li key={project.id} className="mb-2">
-                          <span className="text-body-secondary">Location</span>
-                          <p>{project.location}</p>
+                        <li key={project.id} className="mb-3">
+                          <span className="text-body-secondary d-block">
+                            Location
+                          </span>
+                          <p className="mb-0">{project.location}</p>
                         </li>
                       )}
                       {project.construction_type && (
-                        <li  className="mb-2">
-                          <span className="text-body-secondary">
-                            Construction_type
+                        <li className="mb-3">
+                          <span className="text-body-secondary d-block">
+                            Construction Type
                           </span>
-                          <p>{project.construction_type}</p>
+                          <p className="mb-0">{project.construction_type}</p>
                         </li>
                       )}
                       {project.sector && (
-                        <li className="mb-2">
-                          <span className="text-body-secondary">Sector</span>
-                          <p>{project.sector}</p>
+                        <li className="mb-3">
+                          <span className="text-body-secondary d-block">
+                            Sector
+                          </span>
+                          <p className="mb-0">{project.sector}</p>
                         </li>
                       )}
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className="col-md-8">
-                <div>
+              <div className="col-md-8" data-reveal="fade-left">
+                <div className="project-detail-image">
                   <img
                     className="w-100"
                     src={`${fileUrl}uploads/projects/large/${project.image}`}
-                    alt=""
+                    alt={project.title}
                   />
                 </div>
                 <h3 className="py-3">{project.title}</h3>
                 <div
+                  className="project-detail-content"
                   dangerouslySetInnerHTML={{ __html: project.content }}
                 ></div>
               </div>

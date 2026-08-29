@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { apiUrl, fileUrl } from "./http";
-
+import useAnimationReveal from "../../hooks/useAnimation";
 
 const Team = () => {
   const [members, setMembers] = useState([]);
+  useAnimationReveal();
 
   useEffect(() => {
     fetchMembers();
@@ -28,7 +29,7 @@ const Team = () => {
    
    <section className="section-8 bg-light py-5">
           <div className="container">
-            <div className="section-header text-center ">
+            <div className="section-header text-center" data-reveal="fade-up">
               <span>Team</span>
               <h2>Our Team</h2>
               <p>
@@ -38,9 +39,9 @@ const Team = () => {
             </div>
             <div className="row pt-3">
                  {members &&
-      members.map((member) => {
+      members.map((member, index) => {
         return (
-  <div className="col-md-6 col-lg-3 mb-3">
+  <div className="col-md-6 col-lg-3 mb-3" data-reveal="fade-up" style={{ transitionDelay: `${index * 0.1}s` }}>
    
           <div className="card shadow border-0" key={member.id}>
             <div className="card-img-top">

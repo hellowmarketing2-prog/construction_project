@@ -4,7 +4,8 @@ const DeleteButton = () => {
   return (
     <button
       className="delete-btn"
-      title="Delete Project"
+      title="Delete"
+      aria-label="Delete"
       type="button"
     >
       <svg

@@ -5,11 +5,14 @@ import Header from "../common/Header";
 import Hero from "../common/Hero";
 import { apiUrl, fileUrl } from "../common/http";
 import { Link, useParams } from "react-router-dom";
+import useAnimationReveal from "../../hooks/useAnimation";
 
 const ServiceDetails = () => {
   const params = useParams();
   const [service, setService] = useState([]);
   const [services, setServices] = useState([]);
+  useAnimationReveal();
+
   const fetchServices = async () => {
     const res = await fetch(`${apiUrl}get_services`, {
       method: "GET",
@@ -35,24 +38,24 @@ const ServiceDetails = () => {
       <Header />
       <main>
         <Hero
-          preHeading="Quality . Itigrity . Value"
+          preHeading="Quality . Integrity . Value"
           heading={`${service.title}`}
           text=" "
         />
         <section className="section-10 sidebar">
           <div className="container py-5">
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-3" data-reveal="fade-right">
                 <div className="card shadow border-0 sidebar">
                   <div className="card-body px-4 py-4">
                     <h3 className="mt-2 mb-3">Our Services</h3>
                     <ul>
                       {services &&
-                        services.map((service) => {
+                        services.map((serv) => {
                           return (
-                            <li key={service.id}>
-                              <Link to={`/service/${service.id}`}>
-                                {service.title}
+                            <li key={serv.id}>
+                              <Link to={`/service/${serv.id}`}>
+                                {serv.title}
                               </Link>
                             </li>
                           );
@@ -61,16 +64,17 @@ const ServiceDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-9">
-                <div>
+              <div className="col-md-9" data-reveal="fade-left">
+                <div className="service-detail-image">
                   <img
                     className="w-100"
                     src={`${fileUrl}uploads/services/large/${service.image}`}
-                    alt=""
+                    alt={service.title}
                   />
                 </div>
                 <h3 className="py-3">{service.title}</h3>
                 <div
+                  className="service-detail-content"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 ></div>
               </div>

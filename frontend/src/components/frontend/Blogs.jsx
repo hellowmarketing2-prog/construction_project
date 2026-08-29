@@ -1,12 +1,15 @@
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import Hero from "../common/Hero";
-import constructionimg from "../../assets/images/construction3.jpg";
 import { apiUrl, fileUrl } from "../common/http";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAnimationReveal from "../../hooks/useAnimation";
+
 const Blogs = () => {
   const [articles, setArticles] = useState([]);
+  useAnimationReveal();
+
   const fetchAllArticles = async () => {
     const res = await fetch(apiUrl + "get_articles", {
       method: "GET",
@@ -17,22 +20,19 @@ const Blogs = () => {
   useEffect(() => {
     fetchAllArticles();
   }, []);
+
   return (
     <>
       <Header />
       <main>
         <Hero
-          preHeading="Quality . Itigrity . Value"
+          preHeading="Quality . Integrity . Value"
           heading="Blogs & News"
-          text=" We are a team of dedicated professionals committed to
-                  delivering exceptional
-                    <br/>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel,
-                  consectetur officiis?"
+          text="We are a team of dedicated professionals committed to delivering exceptional construction services."
         />
-        <section className="section-6 bg-light py-5">
+        <section className="section-6 bg-light py-5 blogs-page">
           <div className="container">
-            <div className="section-header text-center ">
+            <div className="section-header text-center" data-reveal="fade-up">
               <span>Blog & News</span>
               <h2>Articles & blog posts</h2>
               <p>
@@ -42,25 +42,40 @@ const Blogs = () => {
             </div>
             <div className="row pt-3">
               {articles &&
-                articles.map((article) => {
+                articles.map((article, index) => {
                   return (
-                    <div key={article.id} className="col-md-4">
+                    <div
+                      key={article.id}
+                      className="col-md-4 mb-4"
+                      data-reveal="fade-up"
+                      style={{ transitionDelay: `${(index % 3) * 0.15}s` }}
+                    >
                       <div className="card shadow border-0">
                         <div className="card-img-top">
                           <img
                             src={`${fileUrl}uploads/articles/small/${article.image}`}
                             className="w-100"
+                            alt={article.title}
                           />
-                          {/* <img src={Blogimg} alt="" className="w-100" /> */}
                         </div>
                         <div className="card-body p-3">
                           <div className="mb-3">
-                            <Link  to={`/article/${article.id}`} className="title">
+                            <Link
+                              to={`/article/${article.id}`}
+                              className="title blog-title"
+                            >
                               {article.title}
                             </Link>
                           </div>
-                          <div>
-                            <Link to={`/article/${article.id}`} className="btn btn-primary small">
+                          <div className="d-flex align-items-center justify-content-between">
+                            <span className="article-author">
+                              <i className="bi bi-person-circle me-1"></i>
+                              {article.author}
+                            </span>
+                            <Link
+                              to={`/article/${article.id}`}
+                              className="btn btn-primary small"
+                            >
                               Read More
                             </Link>
                           </div>

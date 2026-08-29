@@ -5,7 +5,9 @@ import Hero from "../common/Hero";
 import { useForm } from "react-hook-form";
 import { apiUrl } from "../common/http";
 import { toast } from "react-toastify";
+import useAnimationReveal from "../../hooks/useAnimation";
 const ContactUs = () => {
+  useAnimationReveal();
   const {
     register,
     handleSubmit,
@@ -48,18 +50,17 @@ const ContactUs = () => {
         />
 
         <section className="section-9 py-5">
-          <div className="section-header text-center ">
-            <span></span>
+          <div className="section-header text-center" data-reveal="fade-up">
+            <span>Get In Touch</span>
             <h2>Contact Us</h2>
             <p>
               We have a wide variety of projects that we have completed for our
-              clients. We have a team of <br />
-              who are dedicated to delivering high-quality work and exceptional
+              clients. Reach out to us for any construction needs.
             </p>
           </div>
           <div className="container">
             <div className="row mt-5">
-              <div className="col-md-3">
+              <div className="col-md-3" data-reveal="fade-right">
                 <div className="card shadow border-0 mb-3">
                   <div className="card-body p-4">
                     <h3>Call Us</h3>
@@ -86,7 +87,7 @@ const ContactUs = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-9">
+              <div className="col-md-9" data-reveal="fade-left">
                 <div className="card shadow border-0">
                   <div className="card-body p-5">
                     <form onSubmit={handleSubmit(onsubmit)}>
