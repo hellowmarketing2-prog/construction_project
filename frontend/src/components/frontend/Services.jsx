@@ -36,8 +36,8 @@ const Services = () => {
             <span>Our Services</span>
             <h2>Our Construction Services</h2>
             <p>
-              We offer a wide range of construction services to meet all your
-              needs.
+              We deliver practical, high-quality construction solutions for
+              homes, businesses, and large-scale developments.
             </p>
           </div>
           <div className="row pt-4">

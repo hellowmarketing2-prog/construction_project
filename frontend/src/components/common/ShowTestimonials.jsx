@@ -95,8 +95,9 @@ const Testimonials = () => {
           <span>Testimonials</span>
           <h2>What people are saying about us</h2>
           <p>
-            We offer Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perspiciatis ullam neque libero animi.
+            We build lasting relationships through reliable workmanship,
+            transparent communication, and construction solutions that stand the
+            test of time.
           </p>
         </div>
 
@@ -105,12 +106,6 @@ const Testimonials = () => {
             modules={[Pagination, Autoplay, Navigation]}
             spaceBetween={30}
             slidesPerView={3}
-            loop={true}
-            autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
             pagination={{ clickable: true }}
             navigation={{
               prevEl: ".testimonial-prev",

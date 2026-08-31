@@ -18,21 +18,33 @@ const ContactUs = () => {
   } = useForm();
 
   const onsubmit = async (data) => {
-    const res = await fetch(apiUrl + "contact_now", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const res = await fetch(apiUrl + "contact_now", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const result = await res.json();
+      let result;
+      try {
+        result = await res.json();
+      } catch {
+        result = {
+          status: false,
+          message: "Unable to send message right now. Please try again later.",
+        };
+      }
 
-    if (result.status == true) {
-      toast.success(result.message);
-      reset();
-    } else {
-      toast.error(result.message);
+      if (res.ok && result.status === true) {
+        toast.success(result.message || "Thanks for contacting us.");
+        reset();
+      } else {
+        toast.error(result.message || "Unable to send message right now.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please check your connection and try again.");
     }
   };
   return (
@@ -40,13 +52,10 @@ const ContactUs = () => {
       <Header />
       <main>
         <Hero
-          preHeading="Quality . Itigrity . Value"
+          preHeading="Quality . Integrity . Value"
           heading="Contact Us"
-          text=" We are a team of dedicated professionals committed to
-                  delivering exceptional
-                    <br/>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel,
-                  consectetur officiis?"
+          text="We help homeowners, developers, and businesses create functional,
+                durable spaces through careful planning and expert execution."
         />
 
         <section className="section-9 py-5">
@@ -54,8 +63,8 @@ const ContactUs = () => {
             <span>Get In Touch</span>
             <h2>Contact Us</h2>
             <p>
-              We have a wide variety of projects that we have completed for our
-              clients. Reach out to us for any construction needs.
+              Whether you need a new build, a renovation, or a project partner
+              for your next commercial development, our team is ready to help.
             </p>
           </div>
           <div className="container">
@@ -65,25 +74,26 @@ const ContactUs = () => {
                   <div className="card-body p-4">
                     <h3>Call Us</h3>
                     <div>
-                      <a href="#">(xxxxxxxxxxx)</a>
+                      <a href="tel:+923001234567">(+92) 300 1234567</a>
                     </div>
                     <div>
-                      <a href="#">(xxxxxxxxxxx)</a>
+                      <a href="tel:+923219876543">(+92) 321 9876543</a>
                     </div>
 
                     <h3 className="mt-4">You can write us</h3>
                     <div>
-                      <a href="#">example@gmail.com</a>
+                      <a href="mailto:hello@urbanedgeconstruction.com">
+                        hello@urbanedgeconstruction.com
+                      </a>
                     </div>
                     <div>
-                      <a href="#">info@gmail.com</a>
+                      <a href="mailto:projects@urbanedgeconstruction.com">
+                        projects@urbanedgeconstruction.com
+                      </a>
                     </div>
 
                     <h3 className="mt-4">Address</h3>
-                    <div>
-                      B-13x, Dijkot FaisalAbad Punjab Pakistan , 220099
-                      10044987999
-                    </div>
+                    <div>Plot 24, Gulberg Road, Lahore, Punjab, Pakistan</div>
                   </div>
                 </div>
               </div>

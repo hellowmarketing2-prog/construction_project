@@ -26,8 +26,8 @@ const LatestArticles = () => {
             <span>Blog & News</span>
             <h2>Articles & blog posts</h2>
             <p>
-              We offer a wide range of construction services to meet all your
-              needs.
+              Learn how strong planning, reliable materials, and skilled
+              execution shape successful construction projects.
             </p>
           </div>
           <div className="row pt-4">

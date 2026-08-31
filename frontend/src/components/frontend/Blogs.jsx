@@ -36,8 +36,9 @@ const Blogs = () => {
               <span>Blog & News</span>
               <h2>Articles & blog posts</h2>
               <p>
-                We offer a wide range of construction services to meet all your
-                needs.
+                Explore practical insights on project planning, structural
+                quality, and smart building decisions that help clients move
+                from concept to completion with confidence.
               </p>
             </div>
             <div className="row pt-3">

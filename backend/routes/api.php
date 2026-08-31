@@ -61,55 +61,53 @@ Route::get('/get_members', [FrontMemberController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/admins', [AuthenticationController::class, 'admins']);
+    Route::delete('/admins/{id}', [AuthenticationController::class, 'deleteAdmin']);
 
-Route::get('/logout', [AuthenticationController::class, 'logout']);
+    Route::get('/logout', [AuthenticationController::class, 'logout']);
 
-// service routes
-Route::post('services', [ServiceController::class, 'store']);
-Route::get('services', [ServiceController::class, 'index']);
+    // service routes
+    Route::post('services', [ServiceController::class, 'store']);
+    Route::get('services', [ServiceController::class, 'index']);
 
-Route::put('services/{id}', [ServiceController::class, 'update']);
-Route::get('services/{id}', [ServiceController::class, 'show']);
-Route::delete('services/{id}', [ServiceController::class, 'destroy']);
+    Route::put('services/{id}', [ServiceController::class, 'update']);
+    Route::get('services/{id}', [ServiceController::class, 'show']);
+    Route::delete('services/{id}', [ServiceController::class, 'destroy']);
 
-// temp image routes
-Route::post('temp_images', [TempImageController::class, 'store']);
-
-
-// project routes
-Route::post('projects', [ProjectController::class, 'store']);
-Route::get('projects', [ProjectController::class, 'index']);
-Route::put('projects/{id}', [ProjectController::class, 'update']);
-Route::get('projects/{id}', [ProjectController::class, 'show']);
-Route::delete('projects/{id}', [ProjectController::class, 'destroy']);
-
-// Article routes
-Route::get('articles', [ArticleController::class, 'index']);
-Route::get('articles/{id}', [ArticleController::class, 'show']);
-Route::post('articles', [ArticleController::class, 'store']);
-Route::put('articles/{id}', [ArticleController::class, 'update']);
-Route::delete('articles/{id}', [ArticleController::class, 'destroy']);
-Route::get('/user', function (Request $request) {
-return $request->user();
-});
-
-// testimonials routes
-Route::post('testimonials', [TestimonialController::class, 'store']);
-Route::get('testimonials', [TestimonialController::class, 'index']);
-Route::get('testimonials/{id}', [TestimonialController::class, 'show']);
-Route::put('testimonials/{id}', [TestimonialController::class, 'update']);
-Route::delete('testimonials/{id}', [TestimonialController::class, 'destroy']);
+    // temp image routes
+    Route::post('temp_images', [TempImageController::class, 'store']);
 
 
-// team members routes
-Route::post('members', [MemberController::class, 'store']);
-Route::get('members', [MemberController::class, 'index']);
-Route::get('members/{id}', [MemberController::class, 'show']);
-Route::put('members/{id}', [MemberController::class, 'update']);
-Route::delete('members/{id}', [MemberController::class, 'destroy']);
+    // project routes
+    Route::post('projects', [ProjectController::class, 'store']);
+    Route::get('projects', [ProjectController::class, 'index']);
+    Route::put('projects/{id}', [ProjectController::class, 'update']);
+    Route::get('projects/{id}', [ProjectController::class, 'show']);
+    Route::delete('projects/{id}', [ProjectController::class, 'destroy']);
+
+    // Article routes
+    Route::get('articles', [ArticleController::class, 'index']);
+    Route::get('articles/{id}', [ArticleController::class, 'show']);
+    Route::post('articles', [ArticleController::class, 'store']);
+    Route::put('articles/{id}', [ArticleController::class, 'update']);
+    Route::delete('articles/{id}', [ArticleController::class, 'destroy']);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // testimonials routes
+    Route::post('testimonials', [TestimonialController::class, 'store']);
+    Route::get('testimonials', [TestimonialController::class, 'index']);
+    Route::get('testimonials/{id}', [TestimonialController::class, 'show']);
+    Route::put('testimonials/{id}', [TestimonialController::class, 'update']);
+    Route::delete('testimonials/{id}', [TestimonialController::class, 'destroy']);
 
 
-
-
+    // team members routes
+    Route::post('members', [MemberController::class, 'store']);
+    Route::get('members', [MemberController::class, 'index']);
+    Route::get('members/{id}', [MemberController::class, 'show']);
+    Route::put('members/{id}', [MemberController::class, 'update']);
+    Route::delete('members/{id}', [MemberController::class, 'destroy']);
 });

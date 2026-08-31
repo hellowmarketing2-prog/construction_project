@@ -12,10 +12,18 @@ const About = () => {
         <div className="row align-items-center">
           <div className="col-md-6" data-reveal="fade-right">
             <div className="about-image-wrap">
-              <img src={Aboutimg} alt="About Us" className="img-fluid about-image" />
+              <img
+                src={Aboutimg}
+                alt="About Us"
+                className="img-fluid about-image"
+              />
               <div className="about-experience-badge">
                 <div className="experience-number">15+</div>
-                <div className="experience-text">Years of<br />Experience</div>
+                <div className="experience-text">
+                  Years of
+                  <br />
+                  Experience
+                </div>
               </div>
               <div className="about-image-overlay"></div>
             </div>
@@ -27,14 +35,16 @@ const About = () => {
               <h2>Crafting structures that last a lifetime</h2>
               <span className="section-divider"></span>
               <p className="about-lead">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Nihil qui natus itaque quia odio et, vero quod quasi.
+                UrbanEdge Constructions delivers dependable residential,
+                commercial, and industrial building solutions built around
+                safety, craftsmanship, and long-term value.
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt,
-                error repellat eveniet fuga saepe sint doloribus exercitationem
-                qui, magni sed tempore facere minima recusandae. Odio quasi
-                laborum possimus dolorem officia, explicabo unde!
+                From planning and structural work to finishing and handover, we
+                manage every stage with precision and clear communication. Our
+                team combines skilled trades, modern construction methods, and a
+                client-first approach to bring projects to life on time and with
+                confidence.
               </p>
               <div className="about-features mt-4">
                 <div className="about-feature">
@@ -45,7 +55,7 @@ const About = () => {
                   </div>
                 </div>
                 <div className="about-feature">
-                  <i className="bi bi-shield-check-fill"></i>
+                  <i className="bi bi-sheid-check-fill"></i>
                   <div>
                     <h4>Safety First</h4>
                     <p>Strict safety compliance standards</p>

@@ -10,8 +10,8 @@ import Blogs from "./components/frontend/Blogs";
 import ContactUs from "./components/frontend/ContactUs";
 import Login from "./components/backend/Login";
 import Signup from "./components/backend/Signup";
-import {default as CreateService} from "./components/backend/services/Create";
-import {default as CreateProjects} from "./components/backend/projects/Create";
+import { default as CreateService } from "./components/backend/services/Create";
+import { default as CreateProjects } from "./components/backend/projects/Create";
 import "./assets/css/style.scss";
 
 import { ToastContainer } from "react-toastify";
@@ -23,26 +23,21 @@ import { default as ShowProjects } from "./components/backend/projects/Show";
 import { default as EditService } from "./components/backend/services/Edit";
 import { default as EditProject } from "./components/backend/projects/Edit";
 
-
-// importing articles 
+// importing articles
 import { default as CreateArticles } from "./components/backend/articles/Create";
 import { default as EditArticles } from "./components/backend/articles/Edit";
 import { default as ShowArticles } from "./components/backend/articles/Show";
 
-
-
-
-
-// importing testimonials 
-import { default as ShowTestimonial} from "./components/backend/testimonials/Show";
+// importing testimonials
+import { default as ShowTestimonial } from "./components/backend/testimonials/Show";
 import { default as CreateTestimonial } from "./components/backend/testimonials/Create";
 import { default as EditTestimonial } from "./components/backend/testimonials/Edit";
 
-
-// importing team members 
-import { default as ShowMembers} from "./components/backend/members/Show";
-import {default as CreateMembers} from "./components/backend/members/Create";
-import {default as EditMembers} from "./components/backend/members/Edit";
+// importing team members
+import { default as ShowMembers } from "./components/backend/members/Show";
+import { default as CreateMembers } from "./components/backend/members/Create";
+import { default as EditMembers } from "./components/backend/members/Edit";
+import AdminSettings from "./components/backend/AdminSettings";
 import ServiceDetails from "./components/frontend/ServiceDetails";
 import ProjectDetails from "./components/frontend/ProjectDetails";
 import ArticleDetails from "./components/frontend/ArticleDetails";
@@ -51,8 +46,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          
-      <ScrollToTop />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -71,6 +65,15 @@ function App() {
             element={
               <RequireAuth>
                 <Dashboard />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path="/admin/settings"
+            element={
+              <RequireAuth>
+                <AdminSettings />
               </RequireAuth>
             }
           />
@@ -99,7 +102,7 @@ function App() {
                 <EditService />
               </RequireAuth>
             }
-            />
+          />
           <Route
             path="/admin/projects"
             element={
@@ -147,7 +150,6 @@ function App() {
                 <EditArticles />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/testimonials"
@@ -156,7 +158,6 @@ function App() {
                 <ShowTestimonial />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/testimonials/create"
@@ -165,7 +166,6 @@ function App() {
                 <CreateTestimonial />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/testimonials/edit/:id"
@@ -174,7 +174,6 @@ function App() {
                 <EditTestimonial />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/members"
@@ -183,7 +182,6 @@ function App() {
                 <ShowMembers />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/members/create"
@@ -192,7 +190,6 @@ function App() {
                 <CreateMembers />
               </RequireAuth>
             }
-            
           />
           <Route
             path="/admin/members/edit/:id"
@@ -201,16 +198,8 @@ function App() {
                 <EditMembers />
               </RequireAuth>
             }
-            
           />
-     
-          
-        
         </Routes>
-        
-     
-          
-        
       </BrowserRouter>
 
       <ToastContainer

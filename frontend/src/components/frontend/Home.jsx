@@ -26,7 +26,7 @@ const Home = () => {
       <main>
         {/* Hero section */}
         <section className="section-1 home-hero">
-          <div className="hero d-flex align-items-center">
+          <div className="hero d-flex  align-items-center">
             <div className="hero-overlay"></div>
             <div className="hero-particles">
               <span></span>
@@ -38,7 +38,7 @@ const Home = () => {
             </div>
             <div className="container-fluid position-relative">
               <div className="text-center hero-main-content">
-                <span className="hero-span">
+                <span className="hero-span mt-4">
                   <i className="bi bi-building me-2"></i>
                   Welcome To UrbanEdge Constructions
                 </span>

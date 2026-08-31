@@ -72,7 +72,7 @@ const Dashboard = () => {
     {
       title: "Check Messages",
       description: "Review customer enquiries",
-      to: "/admin/contacts",
+      to: "https://mailtrap.io/sandboxes/4884495/messages/5673822273",
       icon: "bi-envelope-open",
     },
     {

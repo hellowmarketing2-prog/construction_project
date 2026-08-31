@@ -13,6 +13,7 @@ export const Sidebar = () => {
     { label: "Articles", to: "/admin/articles", icon: "bi-file-earmark-text" },
     { label: "Testimonials", to: "/admin/testimonials", icon: "bi-chat-quote" },
     { label: "Team members", to: "/admin/members", icon: "bi-people" },
+    { label: "Settings", to: "/admin/settings", icon: "bi-gear" },
   ];
 
   //   const handleLogout = () => {
@@ -31,7 +32,7 @@ export const Sidebar = () => {
           </div>
           <ul>
             {navigation.map((item) => (
-              <li  key={item.to}>
+              <li key={item.to}>
                 <Link
                   className={
                     location.pathname === item.to ||
@@ -41,7 +42,7 @@ export const Sidebar = () => {
                   }
                   to={item.to}
                 >
-                  <i className={`bi ${item.icon}` }></i>
+                  <i className={`bi ${item.icon}`}></i>
                   <span className="ps-2">{item.label}</span>
                   <i className="bi bi-chevron-right nav-arrow"></i>
                 </Link>
@@ -52,7 +53,6 @@ export const Sidebar = () => {
                 <LogoutButton />
                 <span>Sign out</span>
               </div>
-          
             </li>
           </ul>
         </div>

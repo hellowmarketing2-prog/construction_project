@@ -25,8 +25,8 @@ const LatestServices = () => {
             <span>Our Services</span>
             <h2>Our Construction Services</h2>
             <p>
-              We offer a wide range of construction services to meet all your
-              needs.
+              From residential builds to commercial developments, we create
+              durable, efficient spaces designed around your goals.
             </p>
           </div>
           <div className="row pt-4">
