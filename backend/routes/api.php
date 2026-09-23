@@ -19,9 +19,10 @@ use App\Http\Controllers\front\ContactController;
 use App\Models\Article;
 use App\Models\Service;
 
+
 /*
 |-----------------------
-| Public Routes
+| Public Routes`    `+
 |-----------------------
 */
 
